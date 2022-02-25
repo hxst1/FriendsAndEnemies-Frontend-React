@@ -13,6 +13,7 @@
 
 # misc
 .scannerwork
+.env
 .vscode
 .DS_Store
 .env.local
