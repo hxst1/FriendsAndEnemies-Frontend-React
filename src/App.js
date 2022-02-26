@@ -8,7 +8,7 @@ function App() {
   return (
     <Container>
       <Routes>
-        <Route path="/" element={<Navigate to="/users/login" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </Container>
