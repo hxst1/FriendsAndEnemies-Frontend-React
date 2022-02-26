@@ -1,7 +1,7 @@
 import actionTypes from "../../actions/actionTypes";
-import loginReducer from "./loginReducer";
+import userReducer from "./userReducer";
 
-describe("Given a loginReducer function", () => {
+describe("Given a userReducer function", () => {
   describe("When it is called with an empty currentToken and the getLoginAction", () => {
     test("Then it should return the user as a new state", () => {
       const currentToken = {};
@@ -14,7 +14,7 @@ describe("Given a loginReducer function", () => {
         user,
       };
 
-      const expectedNewToken = loginReducer(currentToken, action);
+      const expectedNewToken = userReducer(currentToken, action);
       expect(expectedNewToken).toEqual(user);
     });
   });
@@ -23,7 +23,7 @@ describe("Given a loginReducer function", () => {
     test("Then it should return the same object", () => {
       const currentToken = {};
 
-      const expectedNewToken = loginReducer(currentToken);
+      const expectedNewToken = userReducer(currentToken);
 
       expect(expectedNewToken).toEqual(currentToken);
     });
@@ -31,7 +31,7 @@ describe("Given a loginReducer function", () => {
 
   describe("When it render", () => {
     test("Then it should return equal", () => {
-      const expectedNewToken = loginReducer();
+      const expectedNewToken = userReducer();
 
       expect(expectedNewToken).toEqual(expectedNewToken);
     });
