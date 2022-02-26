@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { loginThunk } from "../../redux/thunks/loginThunk";
 
@@ -46,6 +46,19 @@ const FormContainer = styled.form`
 
       & button:hover {
         background-color: #4752c4;
+      }
+
+      & p {
+        width: 244px;
+        font-family: monospace;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #70747a;
+
+        & .link {
+          color: #5765f2;
+          text-decoration: none;
+        }
       }
     }
   }
@@ -116,8 +129,14 @@ const LoginForm = () => {
         </li>
         <li>
           <button type="submit" className="button" disabled={!isFilled}>
-            Sign in
+            Sign In
           </button>
+          <p>
+            ¿You need an account?{" "}
+            <Link className="link" to="/register">
+              Sign Up
+            </Link>
+          </p>
         </li>
       </ul>
     </FormContainer>
