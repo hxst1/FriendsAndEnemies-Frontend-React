@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { loginThunk } from "../../redux/thunks/loginThunk";
 
@@ -51,6 +52,7 @@ const FormContainer = styled.form`
 `;
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialFormData = {
     username: "",
@@ -73,7 +75,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(loginThunk(formData));
+    dispatch(loginThunk(formData, navigate));
     resetValues();
   };
 
@@ -96,6 +98,7 @@ const LoginForm = () => {
             name="username"
             id="username"
             onChange={handleChange}
+            required
           />
         </li>
         <li>
@@ -108,6 +111,7 @@ const LoginForm = () => {
             id="password"
             onChange={handleChange}
             autoComplete="on"
+            required
           />
         </li>
         <li>
