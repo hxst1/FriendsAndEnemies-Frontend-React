@@ -112,6 +112,12 @@ const RegisterForm = () => {
     formData.username !== "" &&
     formData.password !== "";
 
+  const audio = new Audio("owo.mp3");
+
+  const start = () => {
+    audio.play();
+  };
+
   return (
     <FormContainer
       className="form-container"
@@ -162,7 +168,12 @@ const RegisterForm = () => {
           />
         </li>
         <li>
-          <button type="submit" className="button" disabled={!isFilled}>
+          <button
+            type="submit"
+            onClick={start}
+            className="button"
+            disabled={!isFilled}
+          >
             Sign Up
           </button>
           <p>
