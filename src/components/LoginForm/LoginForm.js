@@ -106,6 +106,11 @@ const LoginForm = () => {
   };
 
   const isFilled = formData.username !== "" && formData.password !== "";
+  const audio = new Audio("dc.mp3");
+
+  const start = () => {
+    audio.play();
+  };
 
   return (
     <FormContainer
@@ -145,7 +150,12 @@ const LoginForm = () => {
           />
         </li>
         <li>
-          <button type="submit" className="button" disabled={!isFilled}>
+          <button
+            type="submit"
+            className="button"
+            onClick={start}
+            disabled={!isFilled}
+          >
             Sign In
           </button>
           <p>
