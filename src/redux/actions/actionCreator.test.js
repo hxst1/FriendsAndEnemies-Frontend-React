@@ -1,15 +1,15 @@
 import { loginAction } from "./actionCreator";
 
 describe("Given a loginAction function", () => {
-  describe("When it receives token", () => {
+  describe("When it receives user", () => {
     test("Then it should return an action type sign-in", () => {
-      const token = { username: "eya", password: "1234" };
+      const user = { username: "eya", password: "1234" };
       const expectedAction = {
         type: "sign-in",
-        token,
+        user,
       };
 
-      const action = loginAction(token);
+      const action = loginAction(user);
 
       expect(action).toEqual(expectedAction);
     });
