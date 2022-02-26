@@ -2,7 +2,7 @@ import { loginAction } from "../actions/actionCreator";
 import jwtDecode from "jwt-decode";
 
 export const loginThunk = (user, navigate) => async (dispatch) => {
-  const response = await fetch(`${process.env.REACT_APP_APILOCAL}users/login`, {
+  const response = await fetch(`${process.env.REACT_APP_APIURL}users/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
