@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { userThunk } from "../../redux/thunks/userThunk";
+import { registerThunk } from "../../redux/thunks/userThunk";
 
 const FormContainer = styled.form`
   color: #000;
@@ -12,7 +12,8 @@ const FormContainer = styled.form`
   background-color: #36393e;
   border-radius: 5px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.64);
-  height: 400px;
+  height: 50%;
+  padding: 30px;
   width: 50%;
   min-width: 400px;
   & ul {
@@ -37,7 +38,6 @@ const FormContainer = styled.form`
         margin-bottom: 10px;
         color: #b8bbbe;
       }
-
       & input {
         background-color: #424242;
         border: 1px solid #000;
@@ -77,16 +77,18 @@ const FormContainer = styled.form`
   }
 `;
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialFormData = {
+    name: "",
     username: "",
     password: "",
   };
   const [formData, setFormData] = useState(initialFormData);
 
   const resetValues = () => {
+    document.querySelector("#name").value = "";
     document.querySelector("#username").value = "";
     document.querySelector("#password").value = "";
     setFormData({ ...initialFormData });
@@ -101,11 +103,14 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(userThunk(formData, navigate));
+    dispatch(registerThunk(formData, navigate));
     resetValues();
   };
 
-  const isFilled = formData.username !== "" && formData.password !== "";
+  const isFilled =
+    formData.name !== "" &&
+    formData.username !== "" &&
+    formData.password !== "";
 
   return (
     <FormContainer
@@ -116,8 +121,20 @@ const LoginForm = () => {
     >
       <ul>
         <li>
-          <h1 className="title">Login</h1>
-          <p className="userReg">{formData.username} uwu!</p>
+          <h1 className="title">Register</h1>
+          <p className="userReg">{formData.username} uwu?</p>
+        </li>
+        <li>
+          <label title="name" htmlFor="name">
+            name:
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={handleChange}
+            required
+          />
         </li>
         <li>
           <label title="username" htmlFor="username">
@@ -146,12 +163,12 @@ const LoginForm = () => {
         </li>
         <li>
           <button type="submit" className="button" disabled={!isFilled}>
-            Sign In
+            Sign Up
           </button>
           <p>
-            ¿You need an account?{" "}
-            <Link className="link" to="/register">
-              Sign Up
+            ¿Have an account?{" "}
+            <Link className="link" to="/login">
+              Sign In now
             </Link>
           </p>
         </li>
@@ -160,4 +177,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
