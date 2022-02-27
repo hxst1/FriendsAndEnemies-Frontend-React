@@ -9,3 +9,8 @@ export const registerAction = (newUser) => ({
   type: actionTypes.register,
   newUser,
 });
+
+export const loadUsersAction = (users) => ({
+  type: actionTypes.users,
+  users,
+});

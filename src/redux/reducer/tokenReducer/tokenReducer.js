@@ -1,6 +1,6 @@
 import actionTypes from "../../actions/actionTypes";
 
-const userReducer = (currentToken = {}, action = {}) => {
+const tokenReducer = (currentToken = {}, action = {}) => {
   let newToken;
   switch (action.type) {
     case actionTypes.login:
@@ -15,4 +15,4 @@ const userReducer = (currentToken = {}, action = {}) => {
   return newToken;
 };
 
-export default userReducer;
+export default tokenReducer;
