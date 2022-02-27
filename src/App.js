@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import HomePage from "./pages/HomePage/HomePage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </Container>
   );
