@@ -1,4 +1,8 @@
-import { loginAction, registerAction } from "../actions/actionCreator";
+import {
+  loadUsersAction,
+  loginAction,
+  registerAction,
+} from "../actions/actionCreator";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
@@ -16,7 +20,7 @@ export const userThunk = (user, navigate) => async (dispatch) => {
   const { username } = await jwtDecode(token.token);
   localStorage.setItem("token", token.token);
   dispatch(loginAction({ username, token: token.token }));
-  navigate("/uwu");
+  navigate("/home");
 };
 
 export const registerThunk = (formData, navigate) => async (dispatch) => {
@@ -37,33 +41,18 @@ export const registerThunk = (formData, navigate) => async (dispatch) => {
     navigate("/login");
   });
 };
-/* 
-export const loadProfileThunk = (token) => async (dispatch) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_API_HEROKU_URL}user/user`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const newUser = await response.json();
 
-  dispatch(loadProfileAction(newUser.actualUser));
-}; */
+export const loadUsersThunk = (token) => async (dispatch) => {
+  const url = `${process.env.REACT_APP_APIURL}users/allusers`;
 
-/* export const loadUsersThunk = (token) => async (dispatch) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_API_HEROKU_URL}user/users`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  const newUser = await response.json();
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-  dispatch(loadUsersAction(newUser.returnedUsers));
-}; */
+  axios.get(url, config).then((response) => {
+    dispatch(loadUsersAction(response.data.returnedUsers));
+  });
+};

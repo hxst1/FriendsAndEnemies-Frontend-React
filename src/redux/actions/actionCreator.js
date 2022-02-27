@@ -11,6 +11,6 @@ export const registerAction = (newUser) => ({
 });
 
 export const loadUsersAction = (users) => ({
-  type: actionTypes.users,
+  type: actionTypes.loadUsers,
   users,
 });
