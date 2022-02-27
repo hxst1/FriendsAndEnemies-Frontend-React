@@ -1,5 +1,6 @@
 import { loginAction, registerAction } from "../actions/actionCreator";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 export const userThunk = (user, navigate) => async (dispatch) => {
   const response = await fetch(`${process.env.REACT_APP_APIURL}users/login`, {
@@ -18,20 +19,57 @@ export const userThunk = (user, navigate) => async (dispatch) => {
   navigate("/uwu");
 };
 
-export const registerThunk = (user, navigate) => async (dispatch) => {
+export const registerThunk = (formData, navigate) => async (dispatch) => {
+  const data = new FormData();
+  data.append("image", formData.image);
+  data.append("name", formData.name);
+  data.append("username", formData.username);
+  data.append("password", formData.password);
+
+  const url = `${process.env.REACT_APP_APILOCAL}users/register`;
+
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+  };
+
+  axios
+    .post(url, data, config)
+    .then((response) => {
+      console.log(response);
+      dispatch(registerAction(data));
+      navigate("/login");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+/* 
+export const loadProfileThunk = (token) => async (dispatch) => {
   const response = await fetch(
-    `${process.env.REACT_APP_APIURL}users/register`,
+    `${process.env.REACT_APP_API_HEROKU_URL}user/user`,
     {
-      method: "POST",
+      method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(user),
     }
   );
-
-  if (!response.ok) return;
   const newUser = await response.json();
-  dispatch(registerAction(newUser));
-  navigate("/login");
-};
+
+  dispatch(loadProfileAction(newUser.actualUser));
+}; */
+
+/* export const loadUsersThunk = (token) => async (dispatch) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_HEROKU_URL}user/users`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const newUser = await response.json();
+
+  dispatch(loadUsersAction(newUser.returnedUsers));
+}; */
