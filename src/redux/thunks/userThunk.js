@@ -26,22 +26,16 @@ export const registerThunk = (formData, navigate) => async (dispatch) => {
   data.append("username", formData.username);
   data.append("password", formData.password);
 
-  const url = `${process.env.REACT_APP_APILOCAL}users/register`;
+  const url = `${process.env.REACT_APP_APIURL}users/register`;
 
   const config = {
     headers: { "content-type": "multipart/form-data" },
   };
 
-  axios
-    .post(url, data, config)
-    .then((response) => {
-      console.log(response);
-      dispatch(registerAction(data));
-      navigate("/login");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  axios.post(url, data, config).then(() => {
+    dispatch(registerAction(data));
+    navigate("/login");
+  });
 };
 /* 
 export const loadProfileThunk = (token) => async (dispatch) => {

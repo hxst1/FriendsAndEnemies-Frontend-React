@@ -26,13 +26,11 @@ const RegisterForm = () => {
 
   const changeFile = (event) => {
     const test = event.target.files;
-    console.log(test[0]);
     setFormData({ ...formData, image: test[0] });
   };
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log(formData);
     dispatch(registerThunk(formData, navigate));
   };
 
