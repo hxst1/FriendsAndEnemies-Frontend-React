@@ -1,51 +1,64 @@
 import styled from "styled-components";
 
 const ProfileContainer = styled.div`
-  background-color: #ebebed;
-  height: 200px;
-  align-items: center;
-  justify-content: space-around;
-  padding: 30px;
-  width: 400px;
   display: flex;
-  border-radius: 10px;
-  border: 5px solid #000;
-`;
-const PhotoContainer = styled.div`
-  background-color: red;
-  width: 100px;
-  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2e3136;
+  border: 0.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.64);
+  border-radius: 3px;
+  height: 50px;
+  width: 200px;
+  min-width: 200px;
+  min-height: 50px;
+  margin: 20px;
+  padding: 5px;
+
+  :hover {
+    background-color: #36393e;
+  }
 `;
 
-const TextContainer = styled.div`
-  background-color: inherit;
-`;
-
-const Name = styled.h2`
-  background-color: inherit;
-  font-size: 32px;
+const Cont = styled.section`
+  padding: 5px;
 `;
 
 const Text = styled.p`
-  font-size: 18px;
-  background-color: inherit;
+  font-weight: bold;
+  font-size: 20px;
+  color: #b8bbbe;
 `;
 
 const Image = styled.img`
-  background-color: inherit;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+`;
+
+const ContImg = styled.section`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+`;
+
+const Name = styled.p`
+  font-size: 13px;
+  color: #70747a;
 `;
 
 const UsersInfo = ({ user: { username, name, image } }) => {
   return (
     <>
       <ProfileContainer>
-        <PhotoContainer>
+        <Cont>
+          <Text>@{username}</Text>
+          <Name className="name">{name}</Name>
+        </Cont>
+        <ContImg>
           <Image src={image} alt={username} />
-        </PhotoContainer>
-        <TextContainer>
-          <Name>{name}</Name>
-          <Text>USERNAME: {username}</Text>
-        </TextContainer>
+        </ContImg>
       </ProfileContainer>
     </>
   );

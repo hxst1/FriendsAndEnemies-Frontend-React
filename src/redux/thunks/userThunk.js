@@ -1,4 +1,5 @@
 import {
+  loadProfileAction,
   loadUsersAction,
   loginAction,
   registerAction,
@@ -54,5 +55,20 @@ export const loadUsersThunk = (token) => async (dispatch) => {
 
   axios.get(url, config).then((response) => {
     dispatch(loadUsersAction(response.data.returnedUsers));
+  });
+};
+
+export const loadProfileThunk = (token) => async (dispatch) => {
+  const url = `${process.env.REACT_APP_APIURL}users/user`;
+
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  axios.get(url, config).then((response) => {
+    dispatch(loadProfileAction(response.data.actualUser));
   });
 };

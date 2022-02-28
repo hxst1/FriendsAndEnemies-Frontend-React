@@ -14,3 +14,8 @@ export const loadUsersAction = (users) => ({
   type: actionTypes.loadUsers,
   users,
 });
+
+export const loadProfileAction = (user) => ({
+  type: actionTypes.loadProfile,
+  user,
+});

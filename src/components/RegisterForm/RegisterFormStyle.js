@@ -30,7 +30,7 @@ const FormContainer = styled.form`
       }
 
       & label {
-        margin-bottom: 10px;
+        margin-bottom: 7px;
         color: #b8bbbe;
       }
       & input {
@@ -58,7 +58,6 @@ const FormContainer = styled.form`
 
       & p {
         width: 244px;
-        font-family: monospace;
         margin-top: 10px;
         font-size: 13px;
         color: #70747a;

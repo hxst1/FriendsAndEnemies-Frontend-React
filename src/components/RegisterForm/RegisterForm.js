@@ -54,7 +54,7 @@ const RegisterForm = () => {
         </li>
         <li>
           <label title="name" htmlFor="name">
-            name:
+            name
           </label>
           <input
             type="text"
@@ -66,7 +66,7 @@ const RegisterForm = () => {
         </li>
         <li>
           <label title="username" htmlFor="username">
-            username:
+            username
           </label>
           <input
             type="text"
@@ -78,7 +78,7 @@ const RegisterForm = () => {
         </li>
         <li>
           <label title="password" htmlFor="password">
-            password:
+            password
           </label>
           <input
             type="password"
@@ -90,13 +90,14 @@ const RegisterForm = () => {
           />
         </li>
         <li>
-          <label htmlFor="image">Profile photo</label>
+          <label htmlFor="image">profile picture</label>
           <input
             type="file"
             id="image"
             name="image"
-            placeholder="Upload an Image"
+            placeholder="img"
             required
+            accept=".png, .jpg, .webp"
             onChange={changeFile}
           />
         </li>
