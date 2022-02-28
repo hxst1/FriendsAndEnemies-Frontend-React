@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HomePage from "./pages/HomePage/HomePage";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import "@fontsource/shippori-antique-b1";
 
 const Container = styled.div``;
 
