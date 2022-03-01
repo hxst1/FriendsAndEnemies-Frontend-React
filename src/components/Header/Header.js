@@ -47,13 +47,19 @@ const HeaderContainer = () => {
     dispatch(loadProfileThunk(token));
   }, [dispatch, token]);
 
+  const logOut = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <Container>
       <ProfileInfo user={user} />
       <h1>Social uwu</h1>
       <div className="btns">
         <Link to="/home">home</Link>
-        <Link to="/login">logout</Link>
+        <Link to="/login" onClick={logOut}>
+          logout
+        </Link>
       </div>
     </Container>
   );
