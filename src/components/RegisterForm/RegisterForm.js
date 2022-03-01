@@ -92,6 +92,7 @@ const RegisterForm = () => {
         <li>
           <label htmlFor="image">profile picture</label>
           <input
+            className="custom-file-input"
             type="file"
             id="image"
             name="image"
